@@ -45,8 +45,7 @@ async function createUser () {
         name: 'Naseer',
         username: "nasjacks10",
         email: 'nasjacks10@gmail.com',
-        password: hashedPassword,
-        admin: true
+        password: hashedPassword
 
     })
     console.log(newUser);

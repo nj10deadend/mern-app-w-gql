@@ -47,6 +47,7 @@ module.exports = {
         }, 
         deleteIssue: async (_, {issueId}, context) => {
 
+            
             const user = checkAuth(context);
             console.log(user);
             // console.log(user.id);

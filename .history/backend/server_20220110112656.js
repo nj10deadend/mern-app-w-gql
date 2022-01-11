@@ -28,25 +28,19 @@ const port = 5000;
 
 async function createUser () {
 
-    const plainTextPassword = 'DeadendPassword229' //// My password
+    // const plainTextPassword = 'DeadendPassword229' //// My password
 
     // const plainTextPassword = 'killbeasts123' //// Gehrman password
-    // const plainTextPassword = 'killBill99' //// The Bride password
+    const plainTextPassword = 'killBill99' //// The Bride password
 
-    // const plainTextPassword = '000' Archibald Fanceyson Password
-    // Archibald Email: richerThanBezos@richaf.com
-    // Archibald username: RichBoyNo$nob
-
-    const hashedPassword = await bcrypt.hash(plainTextPassword, 10);
+    const hashedPassword = await bcrypt.hash(plainTextPassword, 5);
 
     console.log(hashedPassword);
 
     const newUser = await User.create({
-        name: 'Naseer',
-        username: "nasjacks10",
-        email: 'nasjacks10@gmail.com',
-        password: hashedPassword,
-        admin: true
+        name: 'The Bride',
+        email: 'killbill666@gmail.com',
+        password: hashedPassword
 
     })
     console.log(newUser);

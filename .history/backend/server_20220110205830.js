@@ -22,7 +22,7 @@ const app = express();
 const port = 5000;
 
 /// create mongodb data ////////////////
-// createUser();
+createUser();
 // createIssue();
 // linkUserToIssue();
 

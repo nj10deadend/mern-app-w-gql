@@ -33,7 +33,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: formattedDate
     },
-    issues: [{ type: Schema.Types.ObjectId, ref: 'Issue' }]
+    issues: [{ type: Schema.Types.ObjectId, ref: 'Issue' }],
+    comments: [{ type: Schema.Types.ObjectId, ref:'Comment'}]
 })
 
 const User = mongoose.model('User', userSchema);

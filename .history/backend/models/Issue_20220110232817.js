@@ -26,22 +26,6 @@ const issueSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    comments: [
-        {
-            body:  {
-                type: String,
-                required: true
-            },
-            username: {
-                type: String
-            },
-            createdAt: {
-                type: String,
-                default: formattedDate
-            }
-
-        }
-    ],
     createdAt: {
         type: String,
         default: formattedDate

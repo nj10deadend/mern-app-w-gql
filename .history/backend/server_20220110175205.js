@@ -22,7 +22,7 @@ const app = express();
 const port = 5000;
 
 /// create mongodb data ////////////////
-// createUser();
+createUser();
 // createIssue();
 // linkUserToIssue();
 
@@ -37,7 +37,7 @@ async function createUser () {
     // Archibald Email: richerThanBezos@richaf.com
     // Archibald username: RichBoyNo$nob
 
-    const hashedPassword = await bcrypt.hash(plainTextPassword, 10);
+    const hashedPassword = await bcrypt.hash(plainTextPassword, 5);
 
     console.log(hashedPassword);
 
@@ -45,8 +45,7 @@ async function createUser () {
         name: 'Naseer',
         username: "nasjacks10",
         email: 'nasjacks10@gmail.com',
-        password: hashedPassword,
-        admin: true
+        password: hashedPassword
 
     })
     console.log(newUser);
