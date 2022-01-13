@@ -10,14 +10,14 @@ const token = localStorage.getItem('jwtToken');
 console.log(token);
 /// Youtube Tutorial add headers method
 
-// const authLink = setContext(() => {
-//     // const token = localStorage.getItem('jwtToken');
-//     return {
-//         headers: {
-//             Authorization: token ? `Bearer ${token}` : ''
-//         }
-//     }
-// })
+const authLink = setContext(() => {
+    // const token = localStorage.getItem('jwtToken');
+    return {
+        headers: {
+            Authorization: token ? `Bearer ${token}` : ''
+        }
+    }
+})
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
     if (graphQLErrors) {
@@ -30,25 +30,25 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
 const link = new ApolloLink.from([errorLink, httpLink]); // => Error handling for apollo client
 
-const authMiddleware = new ApolloLink((operation, forward) => {
-    // add the authorization to the headers
-    // const token = localStorage.getItem('jwtToken');
-    operation.setContext(({ headers = {} }) => ({
-      headers: {
-        ...headers,
-        Authorization: token ? `Bearer ${token}` : '',
-      }
-    }));
+// const authMiddleware = new ApolloLink((operation, forward) => {
+//     // add the authorization to the headers
+//     // const token = localStorage.getItem('jwtToken');
+//     operation.setContext(({ headers = {} }) => ({
+//       headers: {
+//         ...headers,
+//         Authorization: token ? `Bearer ${token}` : '',
+//       }
+//     }));
   
-    return forward(operation);
-})
+//     return forward(operation);
+// })
 
 // uri: 'http://localhost:5000', /// => You can use uri but you won't be able to concatenate headers to it. You have to use 'link: ' instead
 /// THEN put the uri 'localhost:5000 '
 const client = new ApolloClient({
     link, // => Adds more useful errors for apollo. MAKE SURE THIS IS ADDED ABOVE EVERYTHING ELSE!!!!!!!!!!!!!!!
-    link: concat(authMiddleware, httpLink), /// => How to concatenate token with Header (DIDNT WORK ON SECOND TRY FOR SOME REASON)
-    // link: concat(authLink, httpLink), /// => This works as well
+    // link: concat(authMiddleware, httpLink), /// => How to concatenate token with Header (DIDNT WORK ON SECOND TRY FOR SOME REASON)
+    link: concat(authLink, httpLink), /// => This works as well
     // link: authLink.concat(httpLink), /// => This works as well
     cache: new InMemoryCache()
 });

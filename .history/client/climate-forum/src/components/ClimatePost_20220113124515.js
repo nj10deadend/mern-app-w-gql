@@ -64,7 +64,7 @@ export default function ClimatePost({eachPost, loading}) {
                     <Button variant="contained" endIcon={<ThumbUpOffAltIcon />}></Button>
                     <Button variant="contained" color="error" endIcon={<ThumbDownOffAltIcon />}></Button>
                 </div> */}
-                <UpDownVote key={eachPost.id} eachPost={eachPost} eachPostId={eachPost.id} loading={loading} />
+                <UpDownVote key={eachPost.id} eachPostId={eachPost.id} />
             </Grid>
 
 

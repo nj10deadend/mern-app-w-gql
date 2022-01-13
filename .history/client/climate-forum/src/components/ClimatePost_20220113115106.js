@@ -5,6 +5,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import LinearProgress from '@mui/material/LinearProgress';
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import CreateComment from './CreateComment';
@@ -12,6 +14,12 @@ import UpDownVote from './UpDownVote';
 
 export default function ClimatePost({eachPost, loading}) {
 
+    const [clicked, setClicked] = useState(false)
+    const addIcon = <AddIcon />
+    const minusIcon = <RemoveCircleOutlineIcon />
+
+    // const buttonTxt = clicked ? "Hide Comments" : "Add Comment" ;
+    // const buttonIcon = clicked ? minusIcon : addIcon;
     console.log(eachPost.upvotes.map(eachU => console.log(eachU.count)));
     console.log(eachPost.downvotes.count);
 
@@ -33,7 +41,6 @@ export default function ClimatePost({eachPost, loading}) {
                     <p>{eachPost.details}</p>
 
                     <CreateComment />
-
                     <Typography variant='hr' component='hr' gutterBottom></Typography>
 
                 </Box>
@@ -64,7 +71,7 @@ export default function ClimatePost({eachPost, loading}) {
                     <Button variant="contained" endIcon={<ThumbUpOffAltIcon />}></Button>
                     <Button variant="contained" color="error" endIcon={<ThumbDownOffAltIcon />}></Button>
                 </div> */}
-                <UpDownVote key={eachPost.id} eachPost={eachPost} eachPostId={eachPost.id} loading={loading} />
+                <UpDownVote />
             </Grid>
 
 

@@ -47,7 +47,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
 /// THEN put the uri 'localhost:5000 '
 const client = new ApolloClient({
     link, // => Adds more useful errors for apollo. MAKE SURE THIS IS ADDED ABOVE EVERYTHING ELSE!!!!!!!!!!!!!!!
-    link: concat(authMiddleware, httpLink), /// => How to concatenate token with Header (DIDNT WORK ON SECOND TRY FOR SOME REASON)
+    link: concat(authMiddleware, httpLink), /// => How to concatenate token with Header
     // link: concat(authLink, httpLink), /// => This works as well
     // link: authLink.concat(httpLink), /// => This works as well
     cache: new InMemoryCache()

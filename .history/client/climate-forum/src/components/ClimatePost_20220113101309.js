@@ -5,15 +5,20 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import LinearProgress from '@mui/material/LinearProgress';
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import CreateComment from './CreateComment';
-import UpDownVote from './UpDownVote';
 
 export default function ClimatePost({eachPost, loading}) {
 
-    console.log(eachPost.upvotes.map(eachU => console.log(eachU.count)));
-    console.log(eachPost.downvotes.count);
+    const [clicked, setClicked] = useState(false)
+    const addIcon = <AddIcon />
+    const minusIcon = <RemoveCircleOutlineIcon />
+
+    const buttonTxt = clicked ? "Hide Comments" : "Add Comment" ;
+    const buttonIcon = clicked ? minusIcon : addIcon;
 
     return (
         <Grid
@@ -25,15 +30,14 @@ export default function ClimatePost({eachPost, loading}) {
 
             <Grid item xs={8} sx={{ borderColor: 'primary.main', borderRadius: 1 }}>
                 <Box className="post-box" sx={{ borderColor: 'primary.main', borderRadius: 1 }}>
-                    <p><strong>@{eachPost.username}</strong> : {eachPost.createdAt}</p>
+                    <p>@{eachPost.username} --{eachPost.createdAt}</p>
                     <Box>
-                        <Typography className="post-id" variant='p' component='div' gutterBottom>post id: {eachPost.id}</Typography>
+                        <Typography variant='p' component='div' gutterBottom>post id: {eachPost.id}</Typography>
                         <img className="post-imgs"src={eachPost.image} alt={eachPost.username} />
                     </Box>
                     <p>{eachPost.details}</p>
 
                     <CreateComment />
-
                     <Typography variant='hr' component='hr' gutterBottom></Typography>
 
                 </Box>
@@ -49,7 +53,7 @@ export default function ClimatePost({eachPost, loading}) {
                             </div>
                         } else return (
                             <Box sx={{ borderColor: 'primary.main', borderRadius: 1 }} >
-                                <p key={eachComment.username}> <strong>@{eachComment.username}</strong> : {eachComment.body} -- {eachComment.createdAt}</p>
+                                <p key={eachComment.username}> @{eachComment.username} : {eachComment.body} -- {eachComment.createdAt}</p>
                                 <Typography  variant='hr' component='hr' gutterBottom></Typography>
                             </Box>
                         )
@@ -58,13 +62,11 @@ export default function ClimatePost({eachPost, loading}) {
             </Grid>
 
             <Grid item xs={4} sx={{ borderColor: 'primary.main', borderRadius: 1 }}>
-
-                {/* Working code */}
-                {/* <div className="like-dislike-bttns">
+                <div className="like-dislike-bttns">
                     <Button variant="contained" endIcon={<ThumbUpOffAltIcon />}></Button>
                     <Button variant="contained" color="error" endIcon={<ThumbDownOffAltIcon />}></Button>
-                </div> */}
-                <UpDownVote key={eachPost.id} eachPost={eachPost} eachPostId={eachPost.id} loading={loading} />
+                </div>
+
             </Grid>
 
 

@@ -12,6 +12,12 @@ import UpDownVote from './UpDownVote';
 
 export default function ClimatePost({eachPost, loading}) {
 
+    const [clicked, setClicked] = useState(false)
+    const addIcon = <AddIcon />
+    const minusIcon = <RemoveCircleOutlineIcon />
+
+    // const buttonTxt = clicked ? "Hide Comments" : "Add Comment" ;
+    // const buttonIcon = clicked ? minusIcon : addIcon;
     console.log(eachPost.upvotes.map(eachU => console.log(eachU.count)));
     console.log(eachPost.downvotes.count);
 
@@ -33,7 +39,6 @@ export default function ClimatePost({eachPost, loading}) {
                     <p>{eachPost.details}</p>
 
                     <CreateComment />
-
                     <Typography variant='hr' component='hr' gutterBottom></Typography>
 
                 </Box>
@@ -64,7 +69,7 @@ export default function ClimatePost({eachPost, loading}) {
                     <Button variant="contained" endIcon={<ThumbUpOffAltIcon />}></Button>
                     <Button variant="contained" color="error" endIcon={<ThumbDownOffAltIcon />}></Button>
                 </div> */}
-                <UpDownVote key={eachPost.id} eachPost={eachPost} eachPostId={eachPost.id} loading={loading} />
+                <UpDownVote />
             </Grid>
 
 
