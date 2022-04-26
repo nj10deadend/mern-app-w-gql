@@ -1,6 +1,6 @@
 import React from 'react'
 import { gql, useMutation } from '@apollo/client';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import { AuthContext } from '../context/Auth';
 import {useContext} from 'react';
 import {FETCH_CLIMATE_POSTS} from '../util/graphql';
@@ -17,14 +17,9 @@ import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 // WHEN YOU HAVE AN INVALID HEADERS ERROR CHANGE YOUR APOLLO PROVIDER HEADER FUNCTION
 
 function UpDownVote({eachPost, eachPostId, loading}) {
-    // console.log(eachPostId);
+    console.log(eachPostId);
     
     // const [issueId, setIssueId] = useState('');
-    const [liked, setLiked] = useState(false);
-
-    // useEffect(()=> {
-    //     if ()
-    // })
 
 
     const UPVOTE_ISSUE = gql`
@@ -132,34 +127,6 @@ function UpDownVote({eachPost, eachPostId, loading}) {
 
     const totalUpvotes = eachPost.upvotes.length;
     const totalDownvotes = eachPost.downvotes.length;
-
-    // function renderTotalVotes () {
-    //     if (totalUpvotes && totalDownvotes) {
-    //         return (
-    //             <Box>
-    //                 <div className="like-dislike-bttns">
-    //                     <p>{totalUpvotes}</p>
-    //                     <Button onClick={(event) => handleUpvote(event)} variant="contained" endIcon={<ThumbUpOffAltIcon />}></Button>
-    //                 </div>
-    //                 <div className="like-dislike-bttns">
-    //                     <p>{totalDownvotes}</p>
-    //                     <Button onClick={(event) => handleDownvote(event)} variant="contained" color="error"endIcon={<ThumbDownOffAltIcon />}></Button>
-    //                 </div>
-    //             </Box>
-
-    //         )
-    //     } else {
-    //         return (
-    //             <Box>
-    //                 <Button onClick={(event) => handleUpvote(event)} variant="contained" endIcon={<ThumbUpOffAltIcon />}></Button>
-    //                 <Button onClick={(event) => handleDownvote(event)} variant="contained" color="error"endIcon={<ThumbDownOffAltIcon />}></Button>
-    //             </Box>
-
-    //         )
-    //     }
-    // }
-
-
     return (
         <div>
             {loading ? (
@@ -178,6 +145,7 @@ function UpDownVote({eachPost, eachPostId, loading}) {
                             <Button onClick={(event) => handleDownvote(event)} variant="contained" color="error"endIcon={<ThumbDownOffAltIcon />}></Button>
                         </div>
                     </Box>
+                    
                     
                 )}
 

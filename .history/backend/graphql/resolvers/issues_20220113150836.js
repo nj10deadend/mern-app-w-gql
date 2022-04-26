@@ -108,7 +108,7 @@ module.exports = {
             const issue = await Issue.findById(issueId);
             console.log(issue);
 
-            const userIssue = await Issue.findOne({username: user.username, _id: issueId});
+            const userIssue = await Issue.find({username: user.username, _id: issueId});
 
             console.log(userIssue);
             if (issue && userIssue) {

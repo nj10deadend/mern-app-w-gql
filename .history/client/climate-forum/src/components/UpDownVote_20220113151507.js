@@ -132,34 +132,6 @@ function UpDownVote({eachPost, eachPostId, loading}) {
 
     const totalUpvotes = eachPost.upvotes.length;
     const totalDownvotes = eachPost.downvotes.length;
-
-    // function renderTotalVotes () {
-    //     if (totalUpvotes && totalDownvotes) {
-    //         return (
-    //             <Box>
-    //                 <div className="like-dislike-bttns">
-    //                     <p>{totalUpvotes}</p>
-    //                     <Button onClick={(event) => handleUpvote(event)} variant="contained" endIcon={<ThumbUpOffAltIcon />}></Button>
-    //                 </div>
-    //                 <div className="like-dislike-bttns">
-    //                     <p>{totalDownvotes}</p>
-    //                     <Button onClick={(event) => handleDownvote(event)} variant="contained" color="error"endIcon={<ThumbDownOffAltIcon />}></Button>
-    //                 </div>
-    //             </Box>
-
-    //         )
-    //     } else {
-    //         return (
-    //             <Box>
-    //                 <Button onClick={(event) => handleUpvote(event)} variant="contained" endIcon={<ThumbUpOffAltIcon />}></Button>
-    //                 <Button onClick={(event) => handleDownvote(event)} variant="contained" color="error"endIcon={<ThumbDownOffAltIcon />}></Button>
-    //             </Box>
-
-    //         )
-    //     }
-    // }
-
-
     return (
         <div>
             {loading ? (
@@ -178,6 +150,7 @@ function UpDownVote({eachPost, eachPostId, loading}) {
                             <Button onClick={(event) => handleDownvote(event)} variant="contained" color="error"endIcon={<ThumbDownOffAltIcon />}></Button>
                         </div>
                     </Box>
+                    
                     
                 )}
 

@@ -12,7 +12,6 @@ module.exports = {
     Query: {
         getIssues: async () => {
             return await Issue.find().sort({createdAt: -1}).populate('author'); /// => testing .populate method
-            // return await Issue.find().sort({createdAt: -1}).populate('author'); /// => testing .populate method
         }, 
         getIssue: async (_, {issueId}) => {
 
@@ -106,31 +105,19 @@ module.exports = {
             const user = checkAuth(context);
 
             const issue = await Issue.findById(issueId);
-            console.log(issue);
 
-            const userIssue = await Issue.findOne({username: user.username, _id: issueId});
+            const userIssue = await Issue.find({username: user.username, _id: issueId});
 
             console.log(userIssue);
-            if (issue && userIssue) {
+
+            if (issue) {
 
                 //// This section basically allows for upvote/downvote toggling and limits the user to only adding one upvote/downvote
                 /// If the user already added an upvote/downvote when they make the request again it will be deleted
                 /// If they didn't it will add one upvote/downvote
 
-                if (userIssue.upvotes.find(upvote => upvote.username === user.username)) {
-                    /// Issue already upvoted. Remove upvote
-                    userIssue.upvotes = userIssue.upvotes.filter(upvote => upvote.username !== user.username);
-                } else {
-                    // Issue not upvoted. Add upvote
-                    userIssue.upvotes.push({username: user.username})
-                }
-
-                await userIssue.save();
-                return userIssue;
-            } else if (issue) {
-
                 if (issue.upvotes.find(upvote => upvote.username === user.username)) {
-                            /// Issue already upvoted. Remove upvote
+                    /// Issue already upvoted. Remove upvote
                     issue.upvotes = issue.upvotes.filter(upvote => upvote.username !== user.username);
                 } else {
                     // Issue not upvoted. Add upvote
@@ -142,26 +129,6 @@ module.exports = {
             } else {
                 throw new UserInputError("Climate issue post not found ❌")
             }
-
-            // if (issue) {
-
-            //     //// This section basically allows for upvote/downvote toggling and limits the user to only adding one upvote/downvote
-            //     /// If the user already added an upvote/downvote when they make the request again it will be deleted
-            //     /// If they didn't it will add one upvote/downvote
-
-            //     if (issue.upvotes.find(upvote => upvote.username === user.username)) {
-            //         /// Issue already upvoted. Remove upvote
-            //         issue.upvotes = issue.upvotes.filter(upvote => upvote.username !== user.username);
-            //     } else {
-            //         // Issue not upvoted. Add upvote
-            //         issue.upvotes.push({username: user.username})
-            //     }
-
-            //     await issue.save();
-            //     return issue;
-            // } else {
-            //     throw new UserInputError("Climate issue post not found ❌")
-            // }
         }, 
         downvoteIssue: async (_, {issueId}, context) => {
             const user = checkAuth(context);

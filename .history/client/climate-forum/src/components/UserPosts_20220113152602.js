@@ -3,16 +3,9 @@ import {useQuery} from "@apollo/client";
 import { AuthContext } from '../context/Auth';
 import {useContext} from 'react';
 
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-
 import LinearProgress from '@mui/material/LinearProgress';
 import { FETCH_MY_POSTS } from '../util/graphql';
-
-import CreateComment from './CreateComment';
-
-// import ClimatePost from './ClimatePost';
+import ClimatePost from './ClimatePost';
 
 
 export default function UserPosts() {
